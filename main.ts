@@ -35,31 +35,6 @@ scene.onOverlapTile(SpriteKind.Player, sprites.builtin.field0, function (sprite,
     game.over(true, effects.splatter)
     music.baDing.play()
 })
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    tiles.setTilemap(tiles.createTilemap(hex`10001000030b090909090909090909090909090a050b0b0b0b0b040b0b0b0b0b0b0b0b08050b0b0b0b0b040b0404040b0b0b0b08050b0b040404040b040b040b010b0b08050b0b040b040b0b040b040b040b0b08050b0b040b040b0b040b040b040b0b08050b0b040b040b0b040b040b040b0b08050b0b040b040b0b040b040b040b0b08050b0b040b040b0b040b040b040b0b08050b0b040b040b0b040b040b040b0b08050b0b040b0d0b0b040b020b04040408050b0b040b0b0b0b040b0b0b040b0b08050b0b040404040404040b0b0c0b0b08050b0b0b0b0b0b0b0b0b0b0b0b0b0b08050b0b0b0b0b0b0b0b0b0b0b0b0b0b080e060606060606060606060606060607`, img`
-        . 2 . . . . . . . . . . . . . . 
-        . 2 2 2 2 2 . 2 2 2 2 2 2 2 2 . 
-        . 2 2 2 2 2 . 2 . . . 2 2 2 2 . 
-        . 2 2 . . . . 2 . 2 . 2 . 2 2 . 
-        . 2 2 . 2 . 2 2 . 2 . 2 . 2 2 . 
-        . . . . . . . . . . . 2 . 2 2 . 
-        . 2 2 . 2 . 2 2 . 2 . 2 . 2 2 . 
-        . 2 2 . 2 . 2 2 . 2 . 2 . 2 2 . 
-        . 2 2 . 2 . 2 2 . 2 . 2 . 2 2 . 
-        . 2 2 . 2 . 2 2 . 2 . 2 . 2 2 . 
-        . 2 2 . 2 . 2 2 . 2 . 2 . . . . 
-        . 2 2 . 2 2 2 2 . 2 2 2 . 2 2 . 
-        . 2 2 . . . . . . . 2 2 . 2 2 . 
-        . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
-        . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
-        . . . . . . . . . . . . . . . . 
-        `, [myTiles.transparency16,sprites.dungeon.hazardLava1,sprites.dungeon.doorClosedSouth,sprites.dungeon.doorOpenNorth,sprites.dungeon.darkGroundCenter,sprites.dungeon.darkGroundWest,sprites.dungeon.darkGroundSouth,sprites.dungeon.darkGroundSouthEast0,sprites.dungeon.darkGroundEast,sprites.dungeon.darkGroundNorth,sprites.dungeon.darkGroundNorthEast0,sprites.dungeon.floorDark0,sprites.dungeon.hazardLava0,sprites.builtin.field1,sprites.dungeon.darkGroundSouthWest0], TileScale.Sixteen))
-    tiles.setTileAt(tiles.getTileLocation(5, 10), sprites.builtin.field1)
-    tiles.placeOnRandomTile(Blue, sprites.dungeon.doorOpenNorth)
-    game.splash("Find the Portal", "to the other dimension")
-    myEnemy.destroy()
-    info.startCountdown(30)
-})
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     Blue.setImage(img`
         . f f f f f f f f f f . . . . . 
@@ -202,13 +177,38 @@ scene.onOverlapTile(SpriteKind.Player, sprites.builtin.field1, function (sprite,
     controller.moveSprite(Blue)
     info.startCountdown(30)
 })
+controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
+    tiles.setTilemap(tiles.createTilemap(hex`10001000030b090909090909090909090909090a050b0b0b0b0b040b0b0b0b0b0b0b0b08050b0b0b0b0b040b0404040b0b0b0b08050b0b040404040b040b040b010b0b08050b0b040b040b0b040b040b040b0b08050b0b040b040b0b040b040b040b0b08050b0b040b040b0b040b040b040b0b08050b0b040b040b0b040b040b040b0b08050b0b040b040b0b040b040b040b0b08050b0b040b040b0b040b040b040b0b08050b0b040b0d0b0b040b020b04040408050b0b040b0b0b0b040b0b0b040b0b08050b0b040404040404040b0b0c0b0b08050b0b0b0b0b0b0b0b0b0b0b0b0b0b08050b0b0b0b0b0b0b0b0b0b0b0b0b0b080e060606060606060606060606060607`, img`
+        . 2 . . . . . . . . . . . . . . 
+        . 2 2 2 2 2 . 2 2 2 2 2 2 2 2 . 
+        . 2 2 2 2 2 . 2 . . . 2 2 2 2 . 
+        . 2 2 . . . . 2 . 2 . 2 . 2 2 . 
+        . 2 2 . 2 . 2 2 . 2 . 2 . 2 2 . 
+        . . . . . . . . . . . 2 . 2 2 . 
+        . 2 2 . 2 . 2 2 . 2 . 2 . 2 2 . 
+        . 2 2 . 2 . 2 2 . 2 . 2 . 2 2 . 
+        . 2 2 . 2 . 2 2 . 2 . 2 . 2 2 . 
+        . 2 2 . 2 . 2 2 . 2 . 2 . 2 2 . 
+        . 2 2 . 2 . 2 2 . 2 . 2 . . . . 
+        . 2 2 . 2 2 2 2 . 2 2 2 . 2 2 . 
+        . 2 2 . . . . . . . 2 2 . 2 2 . 
+        . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
+        . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
+        . . . . . . . . . . . . . . . . 
+        `, [myTiles.transparency16,sprites.dungeon.hazardLava1,sprites.dungeon.doorClosedSouth,sprites.dungeon.doorOpenNorth,sprites.dungeon.darkGroundCenter,sprites.dungeon.darkGroundWest,sprites.dungeon.darkGroundSouth,sprites.dungeon.darkGroundSouthEast0,sprites.dungeon.darkGroundEast,sprites.dungeon.darkGroundNorth,sprites.dungeon.darkGroundNorthEast0,sprites.dungeon.floorDark0,sprites.dungeon.hazardLava0,sprites.builtin.field1,sprites.dungeon.darkGroundSouthWest0], TileScale.Sixteen))
+    tiles.setTileAt(tiles.getTileLocation(5, 10), sprites.builtin.field1)
+    tiles.placeOnRandomTile(Blue, sprites.dungeon.doorOpenNorth)
+    game.splash("Find the Portal", "to the other dimension")
+    myEnemy.destroy()
+    info.startCountdown(30)
+})
 info.onLifeZero(function () {
     game.over(false)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, function (sprite, location) {
     game.splash("Game ", "Complete!")
     info.changeScoreBy(10)
-    game.splash("Bonus Level Unlocked!", "Press B to start")
+    game.splash("Bonus Level Unlocked!", "Press Menu to start")
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     info.changeLifeBy(-1)
@@ -233,21 +233,21 @@ Blue = sprites.create(img`
     . . . . . f f f f . . f f f f . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
-tiles.setTilemap(tiles.createTilemap(hex`10001000030b090909090909090909090909090a050b0b0b0b0b040b0b0b0b0b0b0b0b08050b0b0b0b0b040b0404040b0b0b0b08050b0b040404040b040b040b010b0b08050b0b040b040b0b040b040b040b0b08050b0b040b040b0b040b040b040b0b08050b0b040b040b0b040b040b040b0b08050b0b040b040b0b040b040b040b0b08050b0b040b040b0b040b040b040b0b08050b0b040b040b0b040b040b040b0b08050b0b040b040b0b040b020b04040408050b0b040b0b0b0b040b0b0b040b0b08050b0b040404040404040b0b010b0b08050b0b0b0b0b0b0b0b0b0b0b0b0b0b08050b0b0b0b0b0b0b0b0b0b0b0b0b0b080c060606060606060606060606060607`, img`
+tiles.setTilemap(tiles.createTilemap(hex`10001000030b090909090909090909090909090a050b0b0b0b04040b0b0b0b0b0b0b0b08050b04040404040b0404040b0b0b0b08050b04040404040b040b040b01040b08050b04040b040b04040b040b04040b08050b04040b040b04040b040b04040b08050b04040b040b04040b040b04040b08050b04040b040b04040b040b04040b08050b04040b040b04040b040b04040b08050b04040b040b04040b040b04040408050b04040b040b04040b020b04040408050b04040b0b0b04040b0b0b04040b08050b0404040404040404040b010b0b08050b0404040404040404040b0b0b0b08050b0b0b0b0b0b0b0b0b0b0b0b0b0b080c060606060606060606060606060607`, img`
     . 2 . . . . . . . . . . . . . . 
-    . 2 2 2 2 2 . 2 2 2 2 2 2 2 2 . 
-    . 2 2 2 2 2 . 2 . . . 2 2 2 2 . 
-    . 2 2 . . . . 2 . 2 . 2 . 2 2 . 
-    . 2 2 . 2 . 2 2 . 2 . 2 . 2 2 . 
-    . 2 2 . 2 . 2 2 . 2 . 2 . 2 2 . 
-    . 2 2 . 2 . 2 2 . 2 . 2 . 2 2 . 
-    . 2 2 . 2 . 2 2 . 2 . 2 . 2 2 . 
-    . 2 2 . 2 . 2 2 . 2 . 2 . 2 2 . 
-    . 2 2 . 2 . 2 2 . 2 . 2 . 2 2 . 
-    . 2 2 . 2 . 2 2 . 2 . 2 . . . . 
-    . 2 2 . 2 2 2 2 . 2 2 2 . 2 2 . 
-    . 2 2 . . . . . . . 2 2 . 2 2 . 
-    . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
+    . 2 2 2 2 . . 2 2 2 2 2 2 2 2 . 
+    . 2 . . . . . 2 . . . 2 2 2 2 . 
+    . 2 . . . . . 2 . 2 . 2 . . 2 . 
+    . 2 . . 2 . 2 . . 2 . 2 . . 2 . 
+    . 2 . . 2 . 2 . . 2 . 2 . . 2 . 
+    . 2 . . 2 . 2 . . 2 . 2 . . 2 . 
+    . 2 . . 2 . 2 . . 2 . 2 . . 2 . 
+    . 2 . . 2 . 2 . . 2 . 2 . . 2 . 
+    . 2 . . 2 . 2 . . 2 . 2 . . . . 
+    . 2 . . 2 . 2 . . 2 . 2 . . . . 
+    . 2 . . 2 2 2 . . 2 2 2 . . 2 . 
+    . 2 . . . . . . . . . 2 . 2 2 . 
+    . 2 . . . . . . . . . 2 2 2 2 . 
     . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
     . . . . . . . . . . . . . . . . 
     `, [myTiles.transparency16,sprites.dungeon.hazardLava1,sprites.dungeon.doorClosedSouth,sprites.dungeon.doorOpenNorth,sprites.dungeon.darkGroundCenter,sprites.dungeon.darkGroundWest,sprites.dungeon.darkGroundSouth,sprites.dungeon.darkGroundSouthEast0,sprites.dungeon.darkGroundEast,sprites.dungeon.darkGroundNorth,sprites.dungeon.darkGroundNorthEast0,sprites.dungeon.floorDark0,sprites.dungeon.darkGroundSouthWest0], TileScale.Sixteen))
@@ -255,7 +255,7 @@ tiles.placeOnRandomTile(Blue, sprites.dungeon.doorOpenNorth)
 controller.moveSprite(Blue)
 game.splash("Level 1", "Start!")
 game.splash("Find the Door to escape")
-game.splash("AVoid the Lava")
+game.splash("Avoid the Lava")
 scene.cameraFollowSprite(Blue)
 info.startCountdown(60)
 info.setLife(3)
